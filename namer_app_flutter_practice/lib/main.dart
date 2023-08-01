@@ -44,6 +44,10 @@ class MyAppState extends ChangeNotifier {
     }
     notifyListeners();
     }
+  void removeFavorites() {
+    favorites.clear();
+    notifyListeners();
+  }
   }
 
 
@@ -122,6 +126,9 @@ class GeneratorPage extends StatelessWidget {
       icon = Icons.favorite_border;
     }
 
+    IconData delIcon = Icons.delete;
+
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -144,6 +151,15 @@ class GeneratorPage extends StatelessWidget {
                   appState.getNext();
                 },
                 child: Text('Next'),
+              ),
+              SizedBox(width:10),
+              ElevatedButton.icon(
+                onPressed: () {
+                  appState.removeFavorites();
+                },
+                icon: Icon(delIcon),
+                label: Text('Clear Likes'),
+
               ),
             ],
           ),
