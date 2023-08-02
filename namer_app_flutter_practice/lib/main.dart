@@ -157,7 +157,7 @@ class GeneratorPage extends StatelessWidget {
                 onPressed: () {
                   appState.removeFavorites(); 
                 },
-                icon: Icon(delIcon),
+                icon: Icon(delIcon), //Utilizing built in icon images
                 label: Text('Clear Likes'), 
 
               ),
