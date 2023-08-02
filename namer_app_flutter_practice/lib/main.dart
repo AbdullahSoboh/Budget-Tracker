@@ -44,7 +44,7 @@ class MyAppState extends ChangeNotifier {
     }
     notifyListeners();
     }
-  void removeFavorites() {
+  void removeFavorites() { //Clear Likes function
     favorites.clear();
     notifyListeners();
   }
@@ -126,7 +126,7 @@ class GeneratorPage extends StatelessWidget {
       icon = Icons.favorite_border;
     }
 
-    IconData delIcon = Icons.delete;
+    IconData delIcon = Icons.delete; 
 
 
     return Center(
@@ -158,7 +158,7 @@ class GeneratorPage extends StatelessWidget {
                   appState.removeFavorites();
                 },
                 icon: Icon(delIcon),
-                label: Text('Clear Likes'),
+                label: Text('Clear Likes'), 
 
               ),
             ],
