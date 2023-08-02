@@ -153,9 +153,9 @@ class GeneratorPage extends StatelessWidget {
                 child: Text('Next'),
               ),
               SizedBox(width:10),
-              ElevatedButton.icon(
+              ElevatedButton.icon( //Clear likes icon
                 onPressed: () {
-                  appState.removeFavorites();
+                  appState.removeFavorites(); 
                 },
                 icon: Icon(delIcon),
                 label: Text('Clear Likes'), 
@@ -190,7 +190,7 @@ class FavoritesPage extends StatelessWidget {
         for (var pair in appState.favorites)
           ListTile(
             leading: Icon(Icons.favorite),
-            title: Text(pair.asLowerCase),
+            title: Text(pair.asLowerCase), 
           ),
       ],
     );
