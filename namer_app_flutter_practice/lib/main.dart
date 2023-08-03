@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-//Generator Pa
+//Generator Page
 
 class GeneratorPage extends StatelessWidget {
   @override
