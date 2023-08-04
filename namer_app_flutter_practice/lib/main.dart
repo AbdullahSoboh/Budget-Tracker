@@ -126,7 +126,7 @@ class GeneratorPage extends StatelessWidget {
       icon = Icons.favorite_border;
     }
 
-    IconData delIcon = Icons.delete; 
+    IconData delIcon = Icons.delete; //Del Icon
 
 
     return Center(
