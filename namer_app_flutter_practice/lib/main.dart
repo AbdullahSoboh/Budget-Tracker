@@ -55,7 +55,7 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
-
+//Home Page
 class _MyHomePageState extends State<MyHomePage> {
   var selectedIndex = 0;
   
@@ -123,13 +123,13 @@ class GeneratorPage extends StatelessWidget {
     if (appState.favorites.contains(pair)) {
       icon = Icons.favorite;
     } else {
-      icon = Icons.favorite_border;
+      icon = Icons.favorite_border; 
     }
 
     IconData delIcon = Icons.delete; //Del Icon
 
 
-    return Center(
+    return Center( 
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
