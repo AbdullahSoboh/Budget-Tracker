@@ -47,10 +47,43 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          // Navigate to the add expense screen (you'll need to create this screen)
+          // Navigate to the add expense screen (I'll need to create this screen)
           // Navigator.push(context, MaterialPageRoute(builder: (context) => AddExpenseScreen()));
         },
       ),
     );
   }
 }
+
+class AddExpenseScreen extends StatefulWidget {
+  @override
+  State<AddExpenseScreen> createState() => _AddExpenseScreenState();
+}
+
+class _AddExpenseScreenState extends State<AddExpenseScreen> {
+  // We'll add our state properties here
+  String? expenseName; // ? allows for there to be a null value
+  double? expenseAmount;
+  String? selectedCategory;
+
+
+  @override
+  Widget build(BuildContext context) {
+    // Our UI will go here
+    return Scaffold(
+  appBar: AppBar(
+    title: Text('Add Expense'),
+  ),
+  body: Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Column(
+      children: [
+        // Our widgets will go here
+      ],
+    ),
+  ),
+);
+  }
+}
+
+
