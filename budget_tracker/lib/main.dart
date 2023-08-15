@@ -64,7 +64,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
   // We'll add our state properties here
   String? expenseName; // ? allows for there to be a null value
   double? expenseAmount; //User inputed expense amount
-  String? selectedCategory;
+  String? selectedCategory; 
 
 
   @override
