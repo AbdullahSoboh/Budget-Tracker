@@ -59,7 +59,7 @@ class AddExpenseScreen extends StatefulWidget {
   @override
   State<AddExpenseScreen> createState() => _AddExpenseScreenState();
 }
-  
+   
 class _AddExpenseScreenState extends State<AddExpenseScreen> {
   // We'll add our state properties here
   String? expenseName; // ? allows for there to be a null value
