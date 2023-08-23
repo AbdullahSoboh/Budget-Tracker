@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
 class AddExpenseScreen extends StatefulWidget {
   @override
   State<AddExpenseScreen> createState() => _AddExpenseScreenState();
-} 
+}  //Add expense
     
 class _AddExpenseScreenState extends State<AddExpenseScreen> {
   // We'll add our state properties here
