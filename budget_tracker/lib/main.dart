@@ -69,7 +69,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Our UI will go here
+    // Our UI will go here.
     return Scaffold(
   appBar: AppBar(
     title: Text('Add Expense'),
