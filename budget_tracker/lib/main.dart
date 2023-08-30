@@ -79,7 +79,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
     padding: const EdgeInsets.all(16.0),
     child: Column(
       children: [
-        // Our widgets will go here
+        // Our widgets will go here.
       ],
     ),
   ),
