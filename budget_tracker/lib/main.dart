@@ -70,21 +70,23 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Our UI will go here.
     return Scaffold(
-  appBar: AppBar(
-    title: Text('Add Expense'),
-  ),
-  body: Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Column(
-      children: [
-        // Our widgets will go here.
-      ],
-    ),
-  ),
-);
-  }
-}
+      appBar: AppBar(
+        title: Text('Add Expense'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            // Expense Name Text Field
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Expense Name'),
+              onChanged: (value) {
+                setState(() {
+                  expenseName = value;
+                });
+              },
+            ),
+            // Expense Amount Text Field
 
 
