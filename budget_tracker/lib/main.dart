@@ -24,7 +24,12 @@ class Expense {
   Expense({required this.name, required this.amount, required this.category});
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
    List<Expense> expenses = [
     Expense(name: 'Groceries', amount: 50.0, category: 'Food'),
     Expense(name: 'Transport', amount: 20.0, category: 'Transport'),
