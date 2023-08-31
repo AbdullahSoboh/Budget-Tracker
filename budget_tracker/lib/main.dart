@@ -62,11 +62,11 @@ class AddExpenseScreen extends StatefulWidget {
 }  //Add expense
     
 class _AddExpenseScreenState extends State<AddExpenseScreen> {
-  // We'll add our state properties here
-  String? expenseName; // ? allows for there to be a null value
-  double? expenseAmount; //User inputed expense amount
-  String? selectedCategory; //category of spend
-
+  // Your state properties
+  String? expenseName;
+  double? expenseAmount;
+  String? selectedCategory;
+  final List<String> categories = ['Food', 'Transport', 'Entertainment', 'Others']; // Example categories
 
   @override
   Widget build(BuildContext context) {
@@ -88,5 +88,44 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               },
             ),
             // Expense Amount Text Field
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Expense Amount'),
+              keyboardType: TextInputType.number,
+              onChanged: (value) {
+                setState(() {
+                  expenseAmount = double.tryParse(value);
+                });
+              },
+            ),
+            // Category Dropdown
+            DropdownButton<String>(
+              hint: Text('Select Category'),
+              value: selectedCategory,
+              items: categories.map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: (newValue) {
+                setState(() {
+                  selectedCategory = newValue;
+                });
+              },
+            ),
+            // Submit Button
+            ElevatedButton(
+              onPressed: () {
+                // Handle submit logic here
+              },
+              child: Text('Submit'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 
 
