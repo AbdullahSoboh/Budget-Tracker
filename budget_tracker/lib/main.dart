@@ -19,15 +19,16 @@ class MyApp extends StatelessWidget {
 class Expense {
   final String name;
   final double amount;
+  final String category;
 
-  Expense({required this.name, required this.amount});
+  Expense({required this.name, required this.amount, required this.category});
 }
 
 class HomeScreen extends StatelessWidget {
-  final List<Expense> expenses = [
-    Expense(name: 'Groceries', amount: 50.0),
-    Expense(name: 'Transport', amount: 20.0),
-    Expense(name: 'Entertainment', amount: 30.0),
+   List<Expense> expenses = [
+    Expense(name: 'Groceries', amount: 50.0, category: 'Food'),
+    Expense(name: 'Transport', amount: 20.0, category: 'Transport'),
+    Expense(name: 'Entertainment', amount: 30.0, category: 'Entertainment'),
   ];
 
   @override
@@ -117,6 +118,13 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
             ElevatedButton(
               onPressed: () {
                 //
+                if (expenseAmount != null && expenseName != null && selectedCategory != null) {
+                  Expense newExpense = Expense(name: expenseName!, amount: expenseAmount!, category: selectedCategory!);
+
+                  expenses.add(newExpense);
+                }
+
+
               },
               child: Text('Submit'),
             ),
