@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
         child: Icon(Icons.add),
         onPressed: () {
           // Navigate to the add expense screen (I'll need to create this screen)
-          // Navigator.push(context, MaterialPageRoute(builder: (context) => AddExpenseScreen()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AddExpenseScreen()));
         },
       ),
     );
@@ -116,7 +116,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
             // Submit Button
             ElevatedButton(
               onPressed: () {
-                // Handle submit logic here
+                //
               },
               child: Text('Submit'),
             ),
