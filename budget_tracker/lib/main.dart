@@ -126,7 +126,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 if (expenseAmount != null && expenseName != null && selectedCategory != null) {
                   Expense newExpense = Expense(name: expenseName!, amount: expenseAmount!, category: selectedCategory!);
 
-                  expenses.add(newExpense);
+                  //expenses.add(newExpense);
                 }
 
 
