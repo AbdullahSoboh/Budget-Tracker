@@ -1,43 +1,52 @@
+// Import the required Flutter packages.
 import 'package:flutter/material.dart';
 
-typedef UpdateExpensesCallback = void Function(Expense newExpense);
-
+// Define a function that runs the main application.
 void main() => runApp(MyApp());
 
+// Define the MyApp widget as a StatelessWidget.
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Return a MaterialApp widget to set up the app's visual design.
     return MaterialApp(
-      title: 'Budget Tracker',
+      title: 'Budget Tracker',  // Set the title that appears above the app.
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blue,  // Set the primary color scheme.
       ),
-      home: HomeScreen(),
+      home: HomeScreen(),  // Set the initial screen that will be displayed.
     );
   }
 }
 
+// Define a class to model an Expense.
 class Expense {
-  final String name;
-  final double amount;
-  final String category;
+  final String name;  // The name of the expense.
+  final double amount;  // The amount of the expense.
+  final String category;  // The category of the expense.
 
+  // Constructor to initialize an Expense object.
   Expense({required this.name, required this.amount, required this.category});
 }
 
+// Define HomeScreen as a StatefulWidget to allow it to hold mutable state.
 class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+// Define _HomeScreenState as the mutable state for HomeScreen.
 class _HomeScreenState extends State<HomeScreen> {
+  // Initialize a list of Expense objects to hold expenses.
   List<Expense> expenses = [
     Expense(name: 'Groceries', amount: 50.0, category: 'Food'),
     Expense(name: 'Transport', amount: 20.0, category: 'Transport'),
     Expense(name: 'Entertainment', amount: 30.0, category: 'Entertainment'),
   ];
 
+  // Define a function to update the expenses list.
   void _updateExpenses(Expense newExpense) {
+    // Use setState to rebuild the widget with the updated expenses list.
     setState(() {
       expenses.add(newExpense);
     });
