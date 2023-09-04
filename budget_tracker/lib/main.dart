@@ -1,5 +1,6 @@
-//Abdullah Soboh 2023
 import 'package:flutter/material.dart';
+
+typedef UpdateExpensesCallback = void Function(Expense newExpense);
 
 void main() => runApp(MyApp());
 
@@ -30,11 +31,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-   List<Expense> expenses = [
+  List<Expense> expenses = [
     Expense(name: 'Groceries', amount: 50.0, category: 'Food'),
     Expense(name: 'Transport', amount: 20.0, category: 'Transport'),
     Expense(name: 'Entertainment', amount: 30.0, category: 'Entertainment'),
   ];
+
+  void _updateExpenses(Expense newExpense) {
+    setState(() {
+      expenses.add(newExpense);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,25 +61,32 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          // Navigate to the add expense screen (I'll need to create this screen)
-          Navigator.push(context, MaterialPageRoute(builder: (context) => AddExpenseScreen()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddExpenseScreen(updateExpensesCallback: _updateExpenses),
+            ),
+          );
         },
       ),
     );
   }
 }
- 
+
 class AddExpenseScreen extends StatefulWidget {
+  final UpdateExpensesCallback updateExpensesCallback;
+
+  AddExpenseScreen({required this.updateExpensesCallback});
+
   @override
   State<AddExpenseScreen> createState() => _AddExpenseScreenState();
-}  //Add expense
-    
+}
+
 class _AddExpenseScreenState extends State<AddExpenseScreen> {
-  // Your state properties
   String? expenseName;
   double? expenseAmount;
   String? selectedCategory;
-  final List<String> categories = ['Food', 'Transport', 'Entertainment', 'Others']; // Example categories
+  final List<String> categories = ['Food', 'Transport', 'Entertainment', 'Others'];
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +98,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Expense Name Text Field
             TextFormField(
               decoration: InputDecoration(labelText: 'Expense Name'),
               onChanged: (value) {
@@ -93,7 +106,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 });
               },
             ),
-            // Expense Amount Text Field
             TextFormField(
               decoration: InputDecoration(labelText: 'Expense Amount'),
               keyboardType: TextInputType.number,
@@ -103,7 +115,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 });
               },
             ),
-            // Category Dropdown
             DropdownButton<String>(
               hint: Text('Select Category'),
               value: selectedCategory,
@@ -119,17 +130,13 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 });
               },
             ),
-            // Submit Button
             ElevatedButton(
               onPressed: () {
-                //
                 if (expenseAmount != null && expenseName != null && selectedCategory != null) {
                   Expense newExpense = Expense(name: expenseName!, amount: expenseAmount!, category: selectedCategory!);
-
-                  //expenses.add(newExpense); // Need to be added
+                  widget.updateExpensesCallback(newExpense);
+                  Navigator.pop(context);
                 }
-
-
               },
               child: Text('Submit'),
             ),
@@ -139,6 +146,3 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
     );
   }
 }
-
-
-
