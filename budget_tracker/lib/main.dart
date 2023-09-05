@@ -145,6 +145,22 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   Expense newExpense = Expense(name: expenseName!, amount: expenseAmount!, category: selectedCategory!);
                   widget.updateExpensesCallback(newExpense);
                   Navigator.pop(context);
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Invalid Input'),
+                        content: Text('All fields must be filled out appropriately to add an expense.'),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: Text('OK'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 }
               },
               child: Text('Submit'),
