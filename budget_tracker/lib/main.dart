@@ -1,5 +1,7 @@
 // Import the required Flutter packages.
 import 'package:flutter/material.dart';
+typedef UpdateExpensesCallback = void Function(Expense newExpense);
+
 
 // Define a function that runs the main application.
 void main() => runApp(MyApp());
