@@ -8,9 +8,9 @@ BudgetTracker is a cross-platform mobile application designed to empower users w
 
 - **Real-Time Expense Tracking**: Add, delete, or edit expenses on the go.
 - **Expense Categorization**: Sort your expenses into predefined or custom categories.
-- **Data Visualization**: Graphical representation of spending habits for better financial awareness.
+- **Data Visualization**: Graphical representation of spending habits for better financial awareness. - COMING SOON
 - **Robust Data Storage**: Built with MongoDB for reliable and scalable data storage.
-- **Cross-Platform Support**: Available on both Android and iOS.
+- **Cross-Platform Support**: Available on both Android and iOS. - COMING SOON
 
 ## Installation
 
