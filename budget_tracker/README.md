@@ -51,4 +51,5 @@ BudgetTracker is a cross-platform mobile application designed to empower users w
 6. Commit your changes.
 7. Push the feature branch to your fork.
 8. Open a pull request.
+9. Enjoy :)
 
