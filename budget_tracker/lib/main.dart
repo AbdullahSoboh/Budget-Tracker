@@ -173,4 +173,23 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: Text('Invalid Input'),
-                        content: Text('All fields must be filled
+                        content: Text('All fields must be filled out appropriately to add an expense.'),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: Text('OK'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
+              },
+              child: Text('Submit'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
