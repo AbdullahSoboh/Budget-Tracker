@@ -1,54 +1,53 @@
-// Import the required Flutter packages.
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
+
 typedef UpdateExpensesCallback = void Function(Expense newExpense);
 
-
-// Define a function that runs the main application.
 void main() => runApp(MyApp());
 
-// Define the MyApp widget as a StatelessWidget.
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Return a MaterialApp widget to set up the app's visual design.
     return MaterialApp(
-      title: 'Budget Tracker',  // Set the title that appears above the app.
+      title: 'Budget Tracker',
       theme: ThemeData(
-        primarySwatch: Colors.blue,  // Set the primary color scheme.
+        primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),  // Set the initial screen that will be displayed.
+      home: HomeScreen(),
     );
   }
 }
 
-// Define a class to model an Expense.
 class Expense {
-  final String name;  // The name of the expense.
-  final double amount;  // The amount of the expense.
-  final String category;  // The category of the expense.
+  final String name;
+  final double amount;
+  final String category;
 
-  // Constructor to initialize an Expense object.
   Expense({required this.name, required this.amount, required this.category});
 }
 
-// Define HomeScreen as a StatefulWidget to allow it to hold mutable state.
 class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-// Define _HomeScreenState as the mutable state for HomeScreen.
 class _HomeScreenState extends State<HomeScreen> {
-  // Initialize a list of Expense objects to hold expenses.
   List<Expense> expenses = [
     Expense(name: 'Groceries', amount: 50.0, category: 'Food'),
     Expense(name: 'Transport', amount: 20.0, category: 'Transport'),
     Expense(name: 'Entertainment', amount: 30.0, category: 'Entertainment'),
   ];
 
-  // Define a function to update the expenses list.
+  Map<String, double> _getExpenseData() {
+    Map<String, double> expenseData = {};
+    for (Expense expense in expenses) {
+      expenseData[expense.category] = (expenseData[expense.category] ?? 0.0) + expense.amount;
+    }
+    return expenseData;
+  }
+
   void _updateExpenses(Expense newExpense) {
-    // Use setState to rebuild the widget with the updated expenses list.
     setState(() {
       expenses.add(newExpense);
     });
@@ -56,18 +55,39 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, double> expenseData = _getExpenseData();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Budget Tracker'),
       ),
-      body: ListView.builder(
-        itemCount: expenses.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(expenses[index].name),
-            trailing: Text('\$${expenses[index].amount.toStringAsFixed(2)}'),
-          );
-        },
+      body: Column(
+        children: [
+          Expanded(
+            child: PieChart(
+              PieChartData(
+                sections: expenseData.entries.map(
+                  (entry) => PieChartSectionData(
+                    title: entry.key,
+                    value: entry.value,
+                    color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+                  ),
+                ).toList(),
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: expenses.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(expenses[index].name),
+                  trailing: Text('\$${expenses[index].amount.toStringAsFixed(2)}'),
+                );
+              },
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -153,23 +173,4 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: Text('Invalid Input'),
-                        content: Text('All fields must be filled out appropriately to add an expense.'),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.of(context).pop(),
-                            child: Text('OK'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                }
-              },
-              child: Text('Submit'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+                        content: Text('All fields must be filled
