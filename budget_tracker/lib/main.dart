@@ -50,9 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text('Budget Tracker'),
       ),
-      body: Column( // Need to move
-          Expanded(
-            child: PieChart(
+      body: Cot(
               PieChartData(
                 sections: expenseData.entries.map(
                   (entry) => PieChartSectionData(
