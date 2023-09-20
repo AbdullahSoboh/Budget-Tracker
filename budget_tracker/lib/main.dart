@@ -35,14 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Expense(name: 'Entertainment', amount: 30.0, category: 'Entertainment'),
   ];
 
-  Map<String, double> _getExpenseData() {
-    Map<String, double> expenseData = {};
-    for (Expense expense in expenses) {
-      expenseData[expense.category] = (expenseData[expense.category] ?? 0.0) + expense.amount;
-    }
-    return expenseData;
-  }
-
+  
   void _updateExpenses(Expense newExpense) {
     setState(() {
       expenses.add(newExpense);
