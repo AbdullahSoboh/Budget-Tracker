@@ -58,24 +58,23 @@ class _HomeScreenState extends State<HomeScreen> {
     Map<String, double> expenseData = _getExpenseData();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Budget Tracker'),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: PieChart(
-              PieChartData(
-                sections: expenseData.entries.map(
-                  (entry) => PieChartSectionData(
-                    title: entry.key,
-                    value: entry.value,
-                    color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+              AppBar(
+          title: Text('Budget Tracker'),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.show_chart),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChartScreen(expenses: expenses),
                   ),
-                ).toList(),
-              ),
-            ),
-          ),
+                );
+              },
+            )
+          ],
+        ),
+
           Expanded(
             child: ListView.builder(
               itemCount: expenses.length,
