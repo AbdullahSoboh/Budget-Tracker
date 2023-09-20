@@ -6,7 +6,18 @@ typedef UpdateExpensesCallback = void Function(Expense newExpense);
 
 void main() => runApp(MyApp());
 
-
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Budget Tracker',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomeScreen(),
+    );
+  }
+}
 
 class Expense {
   final String name;
@@ -28,7 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
     Expense(name: 'Entertainment', amount: 30.0, category: 'Entertainment'),
   ];
 
-  
   void _updateExpenses(Expense newExpense) {
     setState(() {
       expenses.add(newExpense);
@@ -37,36 +47,38 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, double> expenseData = _getExpenseData();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Budget Tracker'),
-      ),
-      body: Cot(
-              PieChartData(
-                sections: expenseData.entries.map(
-                  (entry) => PieChartSectionData(
-                    title: entry.key,
-                    value: entry.value,
-                    color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+        actions: [
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              if (value == 'Chart') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChartScreen(expenses: expenses),
                   ),
-                ).toList(),
-              ),
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: expenses.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(expenses[index].name),
-                  trailing: Text('\$${expenses[index].amount.toStringAsFixed(2)}'),
                 );
-              },
-            ),
+              }
+            },
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+              const PopupMenuItem<String>(
+                value: 'Chart',
+                child: Text('View Chart'),
+              ),
+            ],
           ),
         ],
+      ),
+      body: ListView.builder(
+        itemCount: expenses.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(expenses[index].name),
+            trailing: Text('\$${expenses[index].amount.toStringAsFixed(2)}'),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -82,6 +94,43 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+class ChartScreen extends StatelessWidget {
+  final List<Expense> expenses;
+
+  ChartScreen({required this.expenses});
+
+  Map<String, double> getExpenseData() {
+    Map<String, double> expenseData = {};
+    for (Expense expense in expenses) {
+      expenseData[expense.category] = (expenseData[expense.category] ?? 0.0) + expense.amount;
+    }
+    return expenseData;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Map<String, double> expenseData = getExpenseData();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Budget Chart'),
+      ),
+      body: PieChart(
+        PieChartData(
+          sections: expenseData.entries.map(
+            (entry) => PieChartSectionData(
+              title: entry.key,
+              value: entry.value,
+              color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+            ),
+          ).toList(),
+        ),
+      ),
+    );
+  }
+}
+
 
 class AddExpenseScreen extends StatefulWidget {
   final UpdateExpensesCallback updateExpensesCallback;
