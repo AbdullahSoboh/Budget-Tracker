@@ -6,14 +6,7 @@ typedef UpdateExpensesCallback = void Function(Expense newExpense);
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Budget Tracker',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+
 
 class Expense {
   final String name;
