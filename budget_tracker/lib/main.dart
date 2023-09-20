@@ -103,7 +103,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
 class AddExpenseScreen extends StatefulWidget {
   final UpdateExpensesCallback updateExpensesCallback;
 
@@ -164,7 +163,10 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
             ElevatedButton(
               onPressed: () {
                 if (expenseAmount != null && expenseName != null && selectedCategory != null) {
-                  Expense newExpense = Expense(name: expenseName!, amount: expenseAmount!, category: selectedCategory!);
+                  Expense newExpense = Expense(
+                      name: expenseName!,
+                      amount: expenseAmount!,
+                      category: selectedCategory!);
                   widget.updateExpensesCallback(newExpense);
                   Navigator.pop(context);
                 } else {
