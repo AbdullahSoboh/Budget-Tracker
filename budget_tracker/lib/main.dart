@@ -112,16 +112,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         title: Text('Add Expense'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Expense Name'),
-              onChanged: (value) {
-                setState(() {
-                  expenseName = value;
-                });
-              },
+        pa
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'Expense Amount'),
