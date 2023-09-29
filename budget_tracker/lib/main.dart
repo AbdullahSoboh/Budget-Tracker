@@ -6,7 +6,7 @@ typedef UpdateExpensesCallback = void Function(Expense newExpense);
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget { //Creating home screen
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
