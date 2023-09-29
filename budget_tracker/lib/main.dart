@@ -172,7 +172,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               items: categories.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
-                  child: Text(value),
+                  child: Text(value), //The dropdown item
                 );
               }).toList(),
               onChanged: (newValue) {
