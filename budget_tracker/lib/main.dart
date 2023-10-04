@@ -216,4 +216,4 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
     );
   }
 } //Need to add the ability to input history of additions 
-//Elaborate on location history of expenses
+//Elaborate on location history of expenses.
