@@ -208,7 +208,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   );
                 }
               },
-              child: Text('Submit'),
+              child: Text('Submit'), //Submit button
             ),
           ],
         ),
