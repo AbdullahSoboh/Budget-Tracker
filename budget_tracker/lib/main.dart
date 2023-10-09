@@ -4,7 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 
 typedef UpdateExpensesCallback = void Function(Expense newExpense);
 
-void main() => runApp(MyApp());
+void main() => runApp(MyApp()); // Beginning of App
 
 class MyApp extends StatelessWidget { //Creating home screen
   @override
