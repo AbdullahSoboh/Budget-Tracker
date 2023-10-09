@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget { //Creating home screen
 }
 
 class Expense {
-  final String name;
+  final String name; //Name of Expense
   final double amount;
   final String category;
 
