@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget { //Creating home screen
 
 class Expense {
   final String name; //Name of Expense
-  final double amount;
+  final double amount; //Amount Spent
   final String category;
 
   Expense({required this.name, required this.amount, required this.category});
