@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Expense(name: 'Groceries', amount: 50.0, category: 'Food'),
     Expense(name: 'Transport', amount: 20.0, category: 'Transport'),
     Expense(name: 'Entertainment', amount: 30.0, category: 'Entertainment'),
-  ]; // Expenses Categories
+  ]; // Expenses Categories Summarized
 
   void _updateExpenses(Expense newExpense) {
     setState(() {
